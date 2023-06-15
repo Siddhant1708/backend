@@ -55,4 +55,17 @@ const updateBlog=async (req,res,next)=>{
     return res.status(200).json({blog});
 }
 
-module.exports= {getAllBlogs,addBlog,updateBlog};
+
+const getById= async(req,res,next)=>{
+    let blogbyid;
+    let blogId=req.params.id;
+    try{
+        blogbyid= await Blog.findById(blogId);
+    }catch(err){
+        return console.log(err);
+    }
+    
+    return res.status(200).json({blogbyid});
+}
+
+module.exports= {getAllBlogs,addBlog,updateBlog,getById};
